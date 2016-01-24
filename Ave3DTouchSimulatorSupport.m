@@ -160,8 +160,6 @@ static IMP AveReplaceInstanceMethod(Class class, SEL sel, id block)
 
 -(void)ave_timerFired:(id)sender
 {
-	CGFloat previousSimulatedForce = simulatedForce;
-	
 	CGFloat factor = shouldSlowDownIncreaseInForce ? slowDownFactor : 1.0;
 	if(shouldIncreaseForce == YES)
 	{
@@ -188,10 +186,8 @@ static IMP AveReplaceInstanceMethod(Class class, SEL sel, id block)
 			[self ave_killTimer];
 		}
 	}
-	if(previousSimulatedForce != simulatedForce)
-	{
-		[self ave_sendFakeTouches];
-	}
+	
+	[self ave_sendFakeTouches];
 }
 @end
 
